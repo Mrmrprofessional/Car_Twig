@@ -23,19 +23,40 @@ class Car
    {
      return $this->make_model;
    }
+
    function getPrice()
    {
      return $this->price;
    }
+
    function getMiles()
    {
      return $this->miles;
    }
+
+   function setMiles($new_miles)
+   {
+     $this->miles = $new_miles;
+   }
+
+   function setModel($new_model)
+   {
+     $this->make_model = $new_model;
+   }
+
+   function setPrice($new_price)
+   {
+     $this->price = $new_price;
+   }
+
+
  }
 $porsche = new Car("pictures/porsche.jpg", "2014 Porsche 911", null, 7864);
 //$porsche->make_model = "2014 Porsche 911";
 //$porsche->price = 114991;
 //$porsche->miles = 7864;
+$porsche->setModel("Acura");
+$porsche->setMiles(10000);
 
 $ford = new Car("pictures/ford.jpg","2001 Ford F450", 55995, 14241);
 /*$ford->make_model = "2011 Ford F450";
@@ -79,6 +100,7 @@ foreach ($cars as $car) {
     }
 
 }
+
 ?>
 
 
@@ -91,6 +113,7 @@ foreach ($cars as $car) {
     <h1>Your Car Dealership</h1>
     <ul>
       <?php
+
         if (empty($cars_matching_search))
         {
           echo "There are no cars matching your search!";
