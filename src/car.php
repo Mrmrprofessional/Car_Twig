@@ -54,9 +54,14 @@ class Car
      $this->price = $new_price;
    }
 
-   static function getAll()
-   {
-       return $_SESSION['cars'];
+   function save()
+    {
+        array_push($_SESSION['cars'], $this);
+    }
+
+    static function getAll()
+    {
+        return $_SESSION['cars'];
     }
 
 

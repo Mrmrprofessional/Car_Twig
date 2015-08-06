@@ -5,6 +5,17 @@
   </head>
   <body>
     <h1>Car Dealership</h1>
+    {% if cars is not empty %}
+           <p>Here are all your cars:</p>
+           <ul>
+               {% for newcar in cars %}
+                   <p><img src= {{ newcar.getPicture }}></p>
+                   <p>{{ newcar.getModel }}</p>
+                   <p>{{ newcar.getPrice }}</p>
+                   <p>{{ newcar.getMiles }}</p>
+               {% endfor %}
+           </ul>
+       {% endif %}
      {% for car in cars %}
         <div class='row'>
         <div class='col-md-6'>
@@ -17,5 +28,20 @@
             </div>
         </div>
       {% endfor %}
+      <form action='/new_car' method='post'>
+             <label for='picture'>Picture</label>
+             <input id='picture' name='picture' type='text'>
+
+             <label for='model'>Make and Model</label>
+             <input id='model' name='model' type='text'>
+
+             <label for='price'>Price</label>
+             <input id='price' name='price' type='text'>
+
+             <label for='miles'>Miles</label>
+             <input id='miles' name='miles' type='text'>
+
+             <button type='submit'>Add Car</button>
+         </form>
   </body>
 </html>
