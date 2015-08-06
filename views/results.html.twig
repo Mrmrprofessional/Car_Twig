@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+        {% if cars_matching_search is empty %}
+            <h1>There are no cars matching your search criteria!</h1>
+        {% else %}
+            {% for car in cars_matching_search %}
+                <img src={{ car.getPicture }}>
+                <p>{{ car.getModel }}</p>
+                <p>{{ car.getPrice }}</p>
+                <p>{{ car.getMiles }}</p>
+            {% endfor %}
+        {% endif %}
+
+  </body>
+</html>

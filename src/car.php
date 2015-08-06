@@ -54,6 +54,10 @@ class Car
      $this->price = $new_price;
    }
 
+   static function getAll()
+   {
+       return $_SESSION['cars'];
+    }
 
 
 }
