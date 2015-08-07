@@ -16,18 +16,6 @@
                {% endfor %}
            </ul>
        {% endif %}
-     {% for car in cars %}
-        <div class='row'>
-        <div class='col-md-6'>
-            <img src={{ car.getPicture }}>
-        </div>
-            <div class='col-md-6'>
-                <p>{{ car.getModel }}</p>
-                <p>{{ car.getPrice }}</p>
-                <p>{{ car.getMiles }}</p>
-            </div>
-        </div>
-      {% endfor %}
       <form action='/new_car' method='post'>
              <label for='picture'>Picture</label>
              <input id='picture' name='picture' type='text'>

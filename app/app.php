@@ -1,12 +1,24 @@
 <?php
     require_once __DIR__."/../vendor/autoload.php";
-    require_once __DIR__."/../src/car.php";
+    require_once __DIR__."/../src/Car.php";
 
     session_start();
 
     if (empty($_SESSION['cars'])) {
         $_SESSION['cars'] = array();
+        $porsche = new Car("pictures/porsche.jpg", "2014 Porsche 911", null, 7864);
+        $porsche->setModel("Acura");
+        $porsche->setMiles(10000);
+        $ford = new Car("pictures/ford.jpg","2001 Ford F450", 55995, 14241);
+        $lexus = new Car("pictures/lexus.jpg", "2013 Lexus RX 350", 44700, 20000);
+        $mercedes = new Car("pictures/mercedes.jpg", "Mercedes Benz CLS550", 39900, 37979);
+        $porsche->save();
+        $ford->save();
+        $lexus->save();
+        $mercedes->save();
     }
+
+
 
     $app = new Silex\Application();
 
@@ -15,16 +27,10 @@
     ));
 
     $app->get("/", function() use ($app) {
-        $porsche = new Car("pictures/porsche.jpg", "2014 Porsche 911", null, 7864);
-        $porsche->setModel("Acura");
-        $porsche->setMiles(10000);
-        $ford = new Car("pictures/ford.jpg","2001 Ford F450", 55995, 14241);
-        $lexus = new Car("pictures/lexus.jpg", "2013 Lexus RX 350", 44700, 20000);
-        $mercedes = new Car("pictures/mercedes.jpg", "Mercedes Benz CLS550", 39900, 37979);
 
-        $cars = array($porsche, $ford, $lexus,$mercedes);
 
-        return $app['twig']->render('home.html.twig', array('cars' => $cars));
+
+        return $app['twig']->render('home.html.twig', array('cars' => Car::getAll()));
     });
 
     $app->get("/car_search", function() use ($app) {
@@ -33,15 +39,6 @@
     });
 
     $app->get("/view_results", function() use ($app) {
-
-        $porsche = new Car("pictures/porsche.jpg", "2014 Porsche 911", null, 7864);
-        $porsche->setModel("Acura");
-        $porsche->setMiles(10000);
-        $ford = new Car("pictures/ford.jpg","2001 Ford F450", 55995, 14241);
-        $lexus = new Car("pictures/lexus.jpg", "2013 Lexus RX 350", 44700, 20000);
-        $mercedes = new Car("pictures/mercedes.jpg", "Mercedes Benz CLS550", 39900, 37979);
-
-        $cars = array($porsche, $ford, $lexus,$mercedes);
 
         $cars_matching_search = array();
             foreach ($cars as $car) {
